@@ -1,0 +1,5 @@
+Resources
+| union (ResourceContainers | where type =~ 'microsoft.resources/subscriptions/resourcegroups')
+| summarize Value = count()
+| extend Name = 'Evaluated'
+| project Name, Value

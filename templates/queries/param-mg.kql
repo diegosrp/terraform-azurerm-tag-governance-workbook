@@ -1,0 +1,22 @@
+ResourceContainers
+| where type =~ 'microsoft.resources/subscriptions'
+| extend mgParent = properties.managementGroupAncestorsChain
+| mv-expand mgParent
+| where true${mg_exclusion_suffix}
+| summarize by mgName = tostring(mgParent.name), mgDisplay = tostring(mgParent.displayName)
+| where isnotempty(mgName)
+| project value = mgName, label = iff(isempty(mgDisplay), mgName, strcat(mgDisplay, ' (', mgName, ')'))
+| union (datatable(value:string, label:string) ['value::all', 'All'])
+| summarize label = any(label) by value
+| extend _k = 1
+| join kind=inner (
+    ResourceContainers
+    | where type =~ 'microsoft.resources/subscriptions'
+    | extend mgParent = properties.managementGroupAncestorsChain
+    | mv-expand mgParent
+    | where true${mg_exclusion_suffix}
+    | summarize count()
+    | extend _k = 1
+) on _k
+| project value, label, selected = iif(value == 'value::all', true, false)
+| order by iif(value == 'value::all', 0, 1) asc, label asc

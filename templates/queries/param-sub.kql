@@ -1,0 +1,11 @@
+ResourceContainers
+| where type =~ 'microsoft.resources/subscriptions'
+| extend mgParent = properties.managementGroupAncestorsChain
+| mv-expand mgParent
+| extend mgName = tostring(mgParent.name)
+| summarize
+	hasSelected = countif('value::all' in ({ManagementGroups}) or mgName in ({ManagementGroups})) > 0,
+	hasExcluded = countif(mgName in~ (${mg_excluded_list})) > 0
+	by value = id, label = name
+| where hasSelected and not(hasExcluded)
+| order by label asc
