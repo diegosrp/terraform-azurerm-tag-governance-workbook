@@ -56,7 +56,7 @@ Reference: [Use tags to organize your Azure resources and management hierarchy](
 │       ├── chart-compliance-summary.kql.tpl
 │       ├── chart-tag-coverage.kql.tpl
 │       ├── table-compliance-by-subscription.kql.tpl
-│       ├── table-compliance-by-resource-type.kql.tpl
+│       ├── table-top-noncompliant-resource-types.kql.tpl
 │       ├── piechart-rg-compliance.kql.tpl
 │       ├── piechart-resource-compliance.kql.tpl
 │       ├── table-noncompliant-rg.kql.tpl

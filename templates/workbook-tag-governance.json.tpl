@@ -118,7 +118,7 @@
             "content": {
               "version": "NotebookGroup/1.0",
               "groupType": "editable",
-              "title": "Tag Compliance",
+              "title": "Tag Compliance Overview",
               "items": [
                 {
                   "type": 3,
@@ -364,7 +364,7 @@
                     "version": "KqlItem/1.0",
                     "query": ${jsonencode(query_chart_compliance_summary)},
                     "size": 0,
-                    "title": "Tag Compliance",
+                    "title": "Compliance Status",
                     "showExportToExcel": true,
                     "queryType": 1,
                     "resourceType": "microsoft.resourcegraph/resources",
@@ -498,9 +498,9 @@
                   "type": 3,
                   "content": {
                     "version": "KqlItem/1.0",
-                    "query": ${jsonencode(query_table_compliance_by_resource_type)},
+                    "query": ${jsonencode(query_table_top_noncompliant_resource_types)},
                     "size": 1,
-                    "title": "Top 15 Resource Types",
+                    "title": "Top 10 Non-Compliant Resource Types",
                     "showExportToExcel": true,
                     "queryType": 1,
                     "resourceType": "microsoft.resourcegraph/resources",
@@ -515,12 +515,12 @@
                           "formatter": 1
                         },
                         {
-                          "columnMatch": "Compliance %",
+                          "columnMatch": "Non-Compliance %",
                           "formatter": 8,
                           "formatOptions": {
                             "min": 0,
                             "max": 100,
-                            "palette": "greenBlue"
+                            "palette": "greenRed"
                           },
                           "numberFormat": {
                             "unit": 1,
@@ -534,20 +534,20 @@
                       "filter": true,
                       "sortBy": [
                         {
-                          "itemKey": "Total",
+                          "itemKey": "Non-Compliance %",
                           "sortOrder": 2
                         }
                       ]
                     },
                     "sortBy": [
                       {
-                        "itemKey": "Total",
+                        "itemKey": "Non-Compliance %",
                         "sortOrder": 2
                       }
                     ]
                   },
                   "customWidth": "65",
-                  "name": "table-compliance-by-resource-type"
+                  "name": "table-top-noncompliant-resource-types"
                 }
               ]
             },

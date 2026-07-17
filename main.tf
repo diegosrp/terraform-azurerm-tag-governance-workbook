@@ -32,10 +32,10 @@ resource "azurerm_application_insights_workbook" "main" {
     query_kpi_noncompliant      = templatefile("${path.module}/templates/queries/kpi-noncompliant.kql.tpl", local.kql_vars)
 
     # Summary Tab - Charts & Tables
-    query_chart_compliance_summary          = templatefile("${path.module}/templates/queries/chart-compliance-summary.kql.tpl", local.kql_vars)
-    query_table_compliance_by_subscription  = templatefile("${path.module}/templates/queries/table-compliance-by-subscription.kql.tpl", local.kql_vars)
-    query_chart_tag_coverage                = templatefile("${path.module}/templates/queries/chart-tag-coverage.kql.tpl", local.kql_vars)
-    query_table_compliance_by_resource_type = templatefile("${path.module}/templates/queries/table-compliance-by-resource-type.kql.tpl", local.kql_vars)
+    query_chart_compliance_summary              = templatefile("${path.module}/templates/queries/chart-compliance-summary.kql.tpl", local.kql_vars)
+    query_table_compliance_by_subscription      = templatefile("${path.module}/templates/queries/table-compliance-by-subscription.kql.tpl", local.kql_vars)
+    query_chart_tag_coverage                    = templatefile("${path.module}/templates/queries/chart-tag-coverage.kql.tpl", local.kql_vars)
+    query_table_top_noncompliant_resource_types = templatefile("${path.module}/templates/queries/table-top-noncompliant-resource-types.kql.tpl", local.kql_vars)
 
     # Inventory Tab - Pie Charts
     query_piechart_rg_compliance       = templatefile("${path.module}/templates/queries/piechart-rg-compliance.kql.tpl", local.kql_vars)

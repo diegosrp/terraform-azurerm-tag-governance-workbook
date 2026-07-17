@@ -210,7 +210,7 @@ locals {
     ---
 
     ## Available Tags to Monitor
-    These are the official and recommended tags you can add to `mandatory_tags`. Currently, ${length(var.mandatory_tags)} are active.
+    These are the official and recommended tags you can add to `mandatory_tags`.
 
     ### CAF Foundational Tags
     **Categories:** ${local.guide_caf_categories}.
